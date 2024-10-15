@@ -1,9 +1,11 @@
 {
   "name": "creative-capital-backend",
   "version": "1.0.0",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
   },
   "author": "",
   "license": "ISC",
@@ -12,6 +14,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "mongoose": "^8.7.1",
-    "multer": "^1.4.5-lts.1"
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^3.1.7"
   }
 }
