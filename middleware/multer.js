@@ -1,23 +1,14 @@
-import multer from "multer";
-import { v2 as cloudinary } from "cloudinary";
-import { CloudinaryStorage } from "multer-storage-cloudinary";
-
-// Configure Cloudinary with your credentials
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, // from Cloudinary dashboard
-  api_key: process.env.CLOUDINARY_API_KEY, // from Cloudinary dashboard
-  api_secret: process.env.CLOUDINARY_API_SECRET, // from Cloudinary dashboard
-});
-
-// Configure Cloudinary Storage for Multer
+import Multer from "multer";
+import {CloudinaryStorage} from "multer-storage-cloudinary"
+import cloudinary from "../middleware/cloudinary.js";
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: "uploads", // Cloudinary folder to store images
-    format: async (req, file) => "png", // Or you can set it dynamically based on the file type
-    public_id: (req, file) => `${file.fieldname}-${Date.now()}`,
+  cloudinary:cloudinary,
+  params:{
+    folder:"blogImages",
+    resource_type:"auto",
+    allowed_formats:["jpg","jpeg","png","gif"]
   },
 });
-
-// Set up Multer to use Cloudinary storage
-export const upload = multer({ storage: storage });
+export const upload = Multer({
+  storage
+});

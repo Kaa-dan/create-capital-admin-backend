@@ -1,7 +1,6 @@
 import Blog from "../model/blog.model.js";
 
 const createBlog = async (req, res) => {
-  console.log(req.body);
   try {
     if (!req.file) {
       return res.status(400).json({ message: "Image upload failed" });
@@ -65,6 +64,8 @@ const getSingleBlog = async (req, res) => {
   }
 };
 
+// updateBlog
+
 const updateBlog = async (req, res) => {
   try {
     const {
@@ -76,7 +77,7 @@ const updateBlog = async (req, res) => {
       blogContent,
       status,
     } = req.body;
-
+    console.log({ status: req.body.status });
     const updateData = {
       metaTitle,
       metaDescription,
@@ -107,6 +108,8 @@ const updateBlog = async (req, res) => {
       .json({ message: "Error updating blog", error: error.message });
   }
 };
+
+//deleteBlog
 const deleteBlog = async (req, res) => {
   try {
     const deletedBlog = await Blog.findByIdAndDelete(req.params.id);

@@ -7,6 +7,8 @@ import {
   getSingleBlog,
   updateBlog,
 } from "../controller/blog.controller.js";
+import cloudinary from "../middleware/cloudinary.js";
+
 import { upload } from "../middleware/multer.js";
 
 const router = express.Router();
@@ -17,7 +19,7 @@ router.get("/blogs", getBlogs);
 
 router.get("/blogs/:id", getSingleBlog);
 
-router.put("/blogs/:id", updateBlog);
+router.put("/blogs/:id", upload.single("image"), updateBlog);
 
 router.delete("/blogs/:id", deleteBlog);
 
