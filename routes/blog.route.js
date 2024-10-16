@@ -1,19 +1,24 @@
-import express, { Router } from "express";
+import express from "express";
+import multer from "multer";
 import {
   createBlog,
   deleteBlog,
   getBlogs,
   getSingleBlog,
   updateBlog,
-} from "../controller/blog.controller";
+} from "../controller/blog.controller.js";
+import { upload } from "../middleware/multer.js";
+
 const router = express.Router();
 // API Routes
-router.post("/api/create-blog", createBlog);
+router.post("/blogs", upload.single("image"), createBlog);
 
-router.get("/api/blogs", getBlogs);
+router.get("/blogs", getBlogs);
 
-router.get("/api/blogs/:id", getSingleBlog);
+router.get("/blogs/:id", getSingleBlog);
 
-router.put("/api/blogs/:id", updateBlog);
+router.put("/blogs/:id", updateBlog);
 
-router.delete("/api/blogs/:id", deleteBlog);
+router.delete("/blogs/:id", deleteBlog);
+
+export default router;

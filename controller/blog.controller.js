@@ -1,4 +1,7 @@
+import Blog from "../model/blog.model.js";
+
 const createBlog = async (req, res) => {
+  console.log(req.body);
   try {
     if (!req.file) {
       return res.status(400).json({ message: "Image upload failed" });
