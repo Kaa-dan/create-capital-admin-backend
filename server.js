@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import blogRoutes from "./routes/blog.route.js";
+import authRoutes from "./routes/auth.route.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -36,6 +37,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/blog", blogRoutes);
+app.use("/api/login", authRoutes);
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

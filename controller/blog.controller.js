@@ -85,7 +85,7 @@ const updateBlog = async (req, res) => {
       blogTitle,
       blogDescription,
       blogContent,
-      status: status === "true", // Convert string to boolean
+      status: status === true, // Convert string to boolean
     };
 
     if (req.file) {
